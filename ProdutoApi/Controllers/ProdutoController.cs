@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Produto.Domain.Dtos;
+using Produto.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Produto.Domain.Interfaces;
-using Produto.Domain.Model;
-using AutoMapper;
-using Produto.Domain.Dtos;
 
 namespace ProdutoApi.Controllers
 {
@@ -15,16 +12,13 @@ namespace ProdutoApi.Controllers
     [ApiController]
     public class ProdutoController : BaseController
     {
-        private readonly IProdutoRep _produtoRep;
-        private readonly IProdutoService _produtoService;
+        private readonly IProdutoRep _produtoRep;        
         private readonly IMapper _mapper;
 
         public ProdutoController(IProdutoRep produtoRep,
-                                 IProdutoService produtoService,
                                  IMapper mapper)
         {
-            _produtoRep = produtoRep;
-            _produtoService = produtoService;
+            _produtoRep = produtoRep;         
             _mapper = mapper;
         }
 
@@ -84,7 +78,7 @@ namespace ProdutoApi.Controllers
             try
             {
                 produto.id = null;
-                await _produtoService.Insert(produto);
+                await _produtoRep.Insert(produto);
                 return Response(produto);
             }
             catch (Exception ex)
@@ -104,7 +98,7 @@ namespace ProdutoApi.Controllers
 
             try
             {
-                await _produtoService.Update(produto);
+                await _produtoRep.Update(produto);
                 return Response(produto);
             }
             catch (Exception ex)
@@ -121,7 +115,7 @@ namespace ProdutoApi.Controllers
 
             try
             {
-                await _produtoService.Delete(id);
+                await _produtoRep.Delete(id);
                 return Response("Sucess");
             }
             catch (Exception ex)

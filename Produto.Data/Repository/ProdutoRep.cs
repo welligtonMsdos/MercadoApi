@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Produto.Data.Context;
+﻿using Microsoft.EntityFrameworkCore;
 using Produto.Domain.Interfaces;
-using Produto.Domain.Model;
+using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Produto.Data.Repository
 {

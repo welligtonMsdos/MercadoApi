@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 using Produto.Domain.Interfaces;
 using Produto.Domain.Model;
+using System;
+using System.Threading.Tasks;
 
 namespace ProdutoApi.Controllers
 {
@@ -14,13 +11,10 @@ namespace ProdutoApi.Controllers
     public class DepartamentoController : BaseController
     {
         private readonly IDepartamentoRep _departamentoRep;
-        private readonly IDepartamentoService _departamentoService;
-
-        public DepartamentoController(IDepartamentoRep departamentoRep,
-                                      IDepartamentoService departamentoService)
+        
+        public DepartamentoController(IDepartamentoRep departamentoRep)
         {
-            _departamentoRep = departamentoRep;
-            _departamentoService = departamentoService;
+            _departamentoRep = departamentoRep;           
         }
 
         [HttpGet]
@@ -77,7 +71,7 @@ namespace ProdutoApi.Controllers
             try
             {
                 departamento.id = null;
-                await _departamentoService.Insert(departamento);
+                await _departamentoRep.Insert(departamento);
                 return Response(departamento);
             }
             catch (Exception ex)
@@ -97,7 +91,7 @@ namespace ProdutoApi.Controllers
 
             try
             {
-                await _departamentoService.Update(departamento);
+                await _departamentoRep.Update(departamento);
                 return Response(departamento);
             }
             catch (Exception ex)
@@ -114,7 +108,7 @@ namespace ProdutoApi.Controllers
 
             try
             {
-                await _departamentoService.Delete(id);
+                await _departamentoRep.Delete(id);
                 return Response("Sucess");
             }
             catch (Exception ex)

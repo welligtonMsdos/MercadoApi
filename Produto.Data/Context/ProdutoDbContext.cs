@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Produto.Domain.Model;
 
 namespace Produto.Data
 {
     public class ProdutoDbContext : DbContext
     {
-        public ProdutoDbContext()
-        {
-
-        }
-
+       
         public ProdutoDbContext(DbContextOptions<ProdutoDbContext> options) : base(options)
         {
-
         }
 
         #region DbSets
         public DbSet<Departamento> departamento { get; set; }
         public DbSet<Domain.Model.Produto> produto { get; set; }
-
         #endregion
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
