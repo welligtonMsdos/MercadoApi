@@ -13,6 +13,13 @@ namespace Produto.Data.Repository
 
         }
 
+        public async Task<ICollection<Domain.Model.Produto>> GetAllProdutos()
+        {
+            return await _dbSet
+                .Include(m => m.Departamento)               
+                .ToListAsync();
+        }
+
         public async Task<ICollection<Domain.Model.Produto>> GetByDepartamentoId(int departamentoId)
         {
             return await _dbSet

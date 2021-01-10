@@ -27,9 +27,11 @@ namespace ProdutoApi.Controllers
         {
             try
             {
-                var produto = await _produtoRep.GetAll();
+                var produto = await _produtoRep.GetAllProdutos();
 
-                return Response(produto);
+                var produtoDto = _mapper.Map<ICollection<ProdutoAllDto>>(produto);
+
+                return Ok(produtoDto);
             }
             catch (Exception ex)
             {
@@ -61,7 +63,7 @@ namespace ProdutoApi.Controllers
 
                 var produtoDto = _mapper.Map<ICollection<ProdutoDto>>(produto);
 
-                return Response(produtoDto);
+                return Ok(produtoDto);                
             }
             catch (Exception ex)
             {

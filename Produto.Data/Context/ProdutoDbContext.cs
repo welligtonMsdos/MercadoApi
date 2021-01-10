@@ -43,7 +43,7 @@ namespace Produto.Data
             modelBuilder.Entity<Domain.Model.Produto>().HasKey(s => s.id);
             modelBuilder.Entity<Domain.Model.Produto>().Property(m => m.descricao);
             modelBuilder.Entity<Domain.Model.Produto>().Property(m => m.preco);
-            modelBuilder.Entity<Domain.Model.Produto>().Property(m => m.estoque);           
+            modelBuilder.Entity<Domain.Model.Produto>().Property(m => m.estoque);          
 
             #endregion
         }
