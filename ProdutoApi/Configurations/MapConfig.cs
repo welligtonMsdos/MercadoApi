@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Produto.Domain.Dtos;
+using Produto.Domain.Model;
 
 namespace ProdutoApi.Configurations
 {
@@ -6,6 +8,12 @@ namespace ProdutoApi.Configurations
     {
         public MapConfig()
         {
+
+            #region DEPARTAMENTO
+
+            CreateMap<Departamento, DepartamentoDto>().ReverseMap();
+
+            #endregion
 
             #region PRODUTO
 

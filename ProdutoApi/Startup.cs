@@ -28,6 +28,8 @@ namespace ProdutoApi
                      options => options.UseSqlServer(
                          Configuration.GetConnectionString("ProdutoDb")));
 
+            services.AddCors();
+
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IDepartamentoRep, DepartamentoRep>();           
@@ -48,6 +50,7 @@ namespace ProdutoApi
                 app.UseHsts();
             }
 
+            app.UseCors(c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseHttpsRedirection();
             app.UseMvc();
         }

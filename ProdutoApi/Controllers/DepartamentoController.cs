@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Produto.Domain.Dtos;
 using Produto.Domain.Interfaces;
 using Produto.Domain.Model;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProdutoApi.Controllers
@@ -11,10 +14,13 @@ namespace ProdutoApi.Controllers
     public class DepartamentoController : BaseController
     {
         private readonly IDepartamentoRep _departamentoRep;
-        
-        public DepartamentoController(IDepartamentoRep departamentoRep)
+        private readonly IMapper _mapper;
+
+        public DepartamentoController(IDepartamentoRep departamentoRep,
+                                      IMapper mapper)
         {
-            _departamentoRep = departamentoRep;           
+            _departamentoRep = departamentoRep;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -24,7 +30,9 @@ namespace ProdutoApi.Controllers
             {
                 var departamento = await _departamentoRep.GetAll();
 
-                return Response(departamento);
+                var departamentoDto = _mapper.Map<ICollection<DepartamentoDto>>(departamento);
+
+                return Response(departamentoDto);
             }
             catch (Exception ex)
             {
