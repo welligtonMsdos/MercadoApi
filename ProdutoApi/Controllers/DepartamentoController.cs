@@ -23,6 +23,23 @@ namespace ProdutoApi.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("[Action]")]
+        public async Task<ActionResult> GetAllByRobo()
+        {
+            try
+            {
+                var departamento = await _departamentoRep.GetAll();
+
+                var departamentoDto = _mapper.Map<ICollection<DepartamentoDto>>(departamento);
+
+                return Ok(departamentoDto);
+            }
+            catch (Exception ex)
+            {
+                return Response(ex.Message);
+            }
+        }
+
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {

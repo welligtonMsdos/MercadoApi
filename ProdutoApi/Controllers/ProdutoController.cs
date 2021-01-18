@@ -22,6 +22,23 @@ namespace ProdutoApi.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("[Action]")]
+        public async Task<ActionResult> GetAllByRobo()
+        {
+            try
+            {
+                var produto = await _produtoRep.GetAllProdutos();
+
+                var produtoDto = _mapper.Map<ICollection<ProdutoAllDto>>(produto);
+
+                return Ok(produtoDto);
+            }
+            catch (Exception ex)
+            {
+                return Response(ex.Message);
+            }
+        }
+
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
@@ -31,7 +48,7 @@ namespace ProdutoApi.Controllers
 
                 var produtoDto = _mapper.Map<ICollection<ProdutoAllDto>>(produto);
 
-                return Ok(produtoDto);
+                return Response(produtoDto);
             }
             catch (Exception ex)
             {
