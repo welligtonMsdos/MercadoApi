@@ -3,6 +3,7 @@ using Produto.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Produto.Data.Repository
 {
@@ -48,5 +49,7 @@ namespace Produto.Data.Repository
         {
             _ctx.Dispose();
         }
+
+       
     }
 }

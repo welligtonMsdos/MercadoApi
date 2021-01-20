@@ -21,24 +21,7 @@ namespace ProdutoApi.Controllers
         {
             _departamentoRep = departamentoRep;
             _mapper = mapper;
-        }
-
-        [HttpGet("[Action]")]
-        public async Task<ActionResult> GetAllByRobo()
-        {
-            try
-            {
-                var departamento = await _departamentoRep.GetAll();
-
-                var departamentoDto = _mapper.Map<ICollection<DepartamentoDto>>(departamento);
-
-                return Ok(departamentoDto);
-            }
-            catch (Exception ex)
-            {
-                return Response(ex.Message);
-            }
-        }
+        }       
 
         [HttpGet]
         public async Task<ActionResult> GetAll()
@@ -62,15 +45,19 @@ namespace ProdutoApi.Controllers
         {
             try
             {
-                var departamento = await _departamentoRep.GetById(id);
+                //var departamento = await _departamentoRep.GetById(id);
 
-                return Response(departamento);
+                var departamento = await _departamentoRep.GetByIdRobo(id);
+
+                var departamentoDto = _mapper.Map<ICollection<DepartamentoDto>>(departamento);
+
+                return Response(departamentoDto);
             }
             catch (Exception ex)
             {
                 return Response(ex.Message);
             }
-        }
+        }        
 
         [HttpGet("[Action]/{descricao}")]
         public async Task<ActionResult> GetByDescricao(string descricao)
@@ -104,7 +91,7 @@ namespace ProdutoApi.Controllers
                 return Response(ex.Message);
             }
         }
-
+        
         [HttpPut]
         public async Task<ActionResult<Departamento>> Put([FromBody] Departamento departamento)
         {

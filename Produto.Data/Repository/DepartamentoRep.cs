@@ -19,5 +19,12 @@ namespace Produto.Data.Repository
                 .Where(m => m.descricao == descricao)
                 .ToListAsync();
         }
+
+        public async Task<ICollection<Departamento>> GetByIdRobo(int id)
+        {
+            return await _dbSet
+               .Where(m => m.id == id)
+               .ToListAsync();
+        }
     }
 }

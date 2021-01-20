@@ -13,7 +13,7 @@ namespace ProdutoApi.Controllers
 
         protected new ActionResult Response(object result = null)
         {
-            if (result.ToString().Contains("error"))
+            if (result.ToString().Contains("error") || result.ToString().Contains("mapping"))
             {
                 return Ok(new
                 {
@@ -21,7 +21,7 @@ namespace ProdutoApi.Controllers
                     Message = "Erro",
                     Data = result
                 });
-            }
+            }           
 
             return Ok(new
             {
