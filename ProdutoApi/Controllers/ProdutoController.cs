@@ -97,7 +97,9 @@ namespace ProdutoApi.Controllers
             try
             {
                 produto.id = null;
-                await _produtoRep.Insert(produto);
+
+                await _produtoRep.Insert(produto);                
+
                 return Response(produto);
             }
             catch (Exception ex)

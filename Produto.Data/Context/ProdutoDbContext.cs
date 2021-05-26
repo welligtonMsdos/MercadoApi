@@ -33,7 +33,7 @@ namespace Produto.Data
             modelBuilder.Entity<Departamento>()
                 .HasMany(m => m.Produtos)
                 .WithOne(m => m.Departamento)
-                .HasForeignKey(m => m.departamento_Id);
+                .HasForeignKey(m => m.departamentoId);
 
             #endregion
 

@@ -17,10 +17,11 @@ namespace ProdutoApi.Configurations
 
             #region PRODUTO
 
-            CreateMap<Produto.Domain.Model.Produto, Produto.Domain.Dtos.ProdutoDto>()
+            CreateMap<Produto.Domain.Model.Produto, ProdutoDto>()
                 .ForMember(m => m.departamento, o => o.MapFrom(s => s.Departamento.descricao));
 
-            CreateMap<Produto.Domain.Model.Produto, Produto.Domain.Dtos.ProdutoAllDto>()
+            CreateMap<Produto.Domain.Model.Produto, ProdutoAllDto>()
+               .ForMember(m => m.departamentoId, o => o.MapFrom(s => s.Departamento.id))
                .ForMember(m => m.departamento, o => o.MapFrom(s => s.Departamento.descricao));
 
             #endregion

@@ -24,7 +24,7 @@ namespace Produto.Data.Repository
         {
             return await _dbSet
                  .Include(m => m.Departamento)
-                 .Where(m => m.departamento_Id == departamentoId)
+                 .Where(m => m.departamentoId == departamentoId)
                  .ToListAsync();
         }
     }
