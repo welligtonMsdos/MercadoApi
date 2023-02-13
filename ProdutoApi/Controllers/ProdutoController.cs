@@ -61,9 +61,11 @@ namespace ProdutoApi.Controllers
         {
             try
             {
-                var produto = await _produtoRep.GetById(id);
+                var produto = await _produtoRep.GetProdutoById(id);
 
-                return Response(produto);
+                var produtoDto = _mapper.Map<ProdutoAllDto>(produto);
+
+                return Response(produtoDto);
             }
             catch (Exception ex)
             {

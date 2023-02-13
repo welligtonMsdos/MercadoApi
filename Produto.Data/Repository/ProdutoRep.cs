@@ -27,5 +27,10 @@ namespace Produto.Data.Repository
                  .Where(m => m.departamentoId == departamentoId)
                  .ToListAsync();
         }
+
+        public async Task<Domain.Model.Produto> GetProdutoById(int id)
+        {
+            return await _dbSet.Include(x => x.Departamento).FirstOrDefaultAsync(x => x.id == id);
+        }
     }
 }

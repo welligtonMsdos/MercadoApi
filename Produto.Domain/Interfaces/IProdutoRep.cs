@@ -7,5 +7,6 @@ namespace Produto.Domain.Interfaces
     {
         Task<ICollection<Model.Produto>> GetAllProdutos();
         Task<ICollection<Model.Produto>> GetByDepartamentoId(int departamentoId);
+        Task<Model.Produto> GetProdutoById(int id);
     }
 }
